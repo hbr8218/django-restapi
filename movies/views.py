@@ -19,6 +19,12 @@ class MovieListAPIView(generics.ListAPIView):
     ordering_fields = ['id','title','genres','up_votes','down_votes']
     queryset = Movie.objects.all()
 
+class MovieDetailListAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = MovieSerializer
+    queryset = Movie.objects.all()
+    lookup_field = 'title'
+    
+
 ### Authenticated
 class MovieCreateAPIView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated,]
